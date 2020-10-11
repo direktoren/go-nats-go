@@ -11,7 +11,7 @@ import (
 	"os/signal"
 	"time"
 
-	"github.com/dikektoren/go-nats-go/pkg/easycrypt"
+	"github.com/direktoren/go-nats-go/pkg/easycrypt"
 
 	"github.com/nats-io/nats.go"
 	"github.com/pkg/errors"
