@@ -157,7 +157,7 @@ func structMessageFunc(v interface{}) rawMessageGenerator {
 func encryptedMessageFunc(generateMessage rawMessageGenerator, key string) rawMessageGenerator {
 	return func(count uint64, total uint64) rawMessage {
 		msg := generateMessage(count, total)
-		encryptedBody, _ := easycrypt.Encrypt(string(msg[8:]), key)
+		encryptedBody, _ := easycrypt.Encrypt(msg[8:], key)
 		encryptedMessage := make(rawMessage, 8+len(encryptedBody))
 		copy(encryptedMessage[8:], encryptedBody)
 		return encryptedMessage
@@ -261,7 +261,7 @@ func main() {
 
 	var generateMessageFunction rawMessageGenerator
 
-	/* ------------- ADD YOUR OWN SCENARIOS HERE ------------- */
+	/* ------------- SCENARIOS ------------- */
 
 	switch config.Scenario {
 
@@ -368,7 +368,7 @@ func main() {
 			case "byte":
 				receivedMessage = byteMessage(msgBytes)
 			case "json":
-				tmpStruct := structMessage{}
+				tmpStruct := structMessage{Data: &bigStruct{}}
 				err := json.Unmarshal(msgBytes, &tmpStruct)
 				if err != nil {
 					// Ignore messages that cannot be unmarshalled

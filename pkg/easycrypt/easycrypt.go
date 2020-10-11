@@ -14,14 +14,14 @@ import (
 )
 
 // Encrypt uses aes encryption on text using key
-func Encrypt(text string, key string) ([]byte, error) {
+func Encrypt(bytes []byte, key string) ([]byte, error) {
 
 	// generate a new aes cipher using our 32 byte long key
 	c, err := aes.NewCipher([]byte(key))
 
 	// if there are any errors, handle them
 	if err != nil {
-		return []byte(""), errors.Wrap(err, "easycrypt: New cipher issue")
+		return []byte{}, errors.Wrap(err, "easycrypt: New cipher issue")
 	}
 
 	// gcm or Galois/Counter Mode, is a mode of operation
@@ -31,7 +31,7 @@ func Encrypt(text string, key string) ([]byte, error) {
 
 	// if any error generating new GCM handle them
 	if err != nil {
-		return []byte(""), errors.Wrap(err, "easycrypt: cipher.NewGCM issue")
+		return []byte{}, errors.Wrap(err, "easycrypt: cipher.NewGCM issue")
 	}
 
 	// creates a new byte array the size of the nonce
@@ -41,7 +41,7 @@ func Encrypt(text string, key string) ([]byte, error) {
 	// populates our nonce with a cryptographically secure
 	// random sequence
 	if _, err = io.ReadFull(rand.Reader, nonce); err != nil {
-		return []byte(""), errors.Wrap(err, "easycrypt: Nonce issue")
+		return []byte{}, errors.Wrap(err, "easycrypt: Nonce issue")
 	}
 
 	// here we encrypt our text using the Seal function
@@ -50,7 +50,7 @@ func Encrypt(text string, key string) ([]byte, error) {
 	// slice. The nonce must be NonceSize() bytes long and unique for all
 	// time, for a given key.
 	// the WriteFile method returns an error if unsuccessful
-	return gcm.Seal(nonce, nonce, []byte(text), nil), nil
+	return gcm.Seal(nonce, nonce, bytes, nil), nil
 }
 
 // Decrypt decrypts bytes using key (aes)
