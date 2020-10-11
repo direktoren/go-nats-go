@@ -46,7 +46,7 @@ func readConfig(fileName string, config *configuration) error {
 	}
 
 	if config.Subject == "" {
-		config.Subject = "speedtestnats"
+		config.Subject = "go-nats-go"
 	}
 
 	if config.NATSServerURL == "" {
