@@ -253,6 +253,10 @@ func main() {
 	defer log.Logf(logrus.InfoLevel, "Closing down.")
 
 	nc, err := nats.Connect(config.NATSServerURL)
+	if err != nil {
+		log.Logf(logrus.FatalLevel, "Unable to connect to nats server err=%v", err)
+		return
+	}
 	defer nc.Close()
 
 	var generateMessageFunction rawMessageGenerator
@@ -358,6 +362,7 @@ func main() {
 			case "byte":
 			}
 
+			// Extract the message
 			var receivedMessage message
 			switch rawMessage(msg.Data).messageType() {
 			case "byte":

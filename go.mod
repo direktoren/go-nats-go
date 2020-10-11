@@ -1,4 +1,4 @@
-module go-nats-go
+module github.com/direktoren/go-nats-go
 
 go 1.15
 
