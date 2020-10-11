@@ -49,7 +49,7 @@ Install using
 ```
 
 ### Configure ###
-Make sure nats-io is up and running. Select two servers with connection to yout nats, or run from the same server. The program needs to be executed from both servers, one as master and one as slave. No more. No less. Update the config.json file to point to your nats. If you needs different nats-url for master and slave - just set that in each config.json. If you want to change settings, number of messages scenario etc - update the config file.
+Make sure nats-io is up and running. If you don't have it already it's easy to setup. Check https://docs.nats.io or just quickly spin up a local docker via `docker pull nats:latest` and then `docker run -p 4222:4222 -ti nats:latest`. **go-nats-go** requires your to select two servers with connection to your nats, or run from the same server. The program needs to be executed from both servers, one as master and one as slave. No more. No less. Update the config.json file to point to your nats. If you needs different nats-url for master and slave - just set that in each config.json. If you want to change settings, number of messages scenario etc - update the config file.
 
 Config file example:
 
