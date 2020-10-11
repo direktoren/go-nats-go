@@ -118,7 +118,7 @@ Slave will remain alive ready to handle more jobs until Ctrl-c or after *Timeout
 Master will close after the job is finished, Ctrl-c or *Timeout*. Advice - unless slave confirms a new job - something probably went wrong.
 
 ### Note: ####
- - regarding the encryption key: Of course we would never store an encryption key in plain text in a config file for production app. But since we are only testing the mechanism just set any 32-byte key BUT use the same for master and slave.
+ - Regarding the encryption key: Of course we would never store an encryption key in plain text in a config file for production app. But since we are only testing the mechanism just set any 32-byte key BUT use the same for master and slave.
  - Metrics values assume clocks are in sync on where go-nats-go master and go-nats-go slave is running.
 
 ### TODO: ###
