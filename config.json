@@ -1,0 +1,10 @@
+{
+    "Subject": "go-nats-go", 
+    "Total": 10000,
+    "NATSServerURL": "nats://localhost:4222",  
+    "Timeout": 1000000000000,
+    "Scenario": "emptybytes",
+    "AESEncryptionKey": "DontUseARealKey.ItHasToBe32Bytes",
+    "NumBytes": 16000,
+    "Filename": "bytes.txt"
+}
